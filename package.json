@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "node": ">=18.0.0"
+  }
+  
   "name": "playtime",
   "version": "0.10.2",
   "description": "A Placemark application for the HDip in Computing, WIT",
@@ -57,8 +61,5 @@
     "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.3"
-  }
-    "engines": {
-    "node": ">=18.0.0"
   }
 }
