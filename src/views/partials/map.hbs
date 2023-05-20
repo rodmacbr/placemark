@@ -1,0 +1,31 @@
+<div>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+         crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+  <div id="map"></div>
+  <script>
+    const map = L.map("map").setView([53.342998628,-6.256165642],100);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+   {{#each location.placemarks}}
+  var redIcon = L.icon({
+    iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+  });
+  var marker = L.marker([{{latitude}},{{longitude}}],{icon: redIcon}).addTo(map);
+  marker.bindPopup("<b>{{name}}</b>").openPopup();
+  marker.on('click', function() {
+    map.flyTo(marker.getLatLng(), 17);
+  });
+{{/each}}
+
+  </script>
+  <style>#map { height: 300px; } </style>
+</div>

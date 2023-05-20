@@ -1,0 +1,21 @@
+{{> menu}}
+
+<section class="section columns is-vcentered">
+  <div class="column has-text-centered">
+    <div class="title">
+      {{location.name}}
+        <div class="card-image">
+            <figure class="image is-256x256">
+                <img src="{{placemark.img}}">
+            </figure>
+        </div>
+    </div>
+    {{> list-placemarks}}
+    {{> add-placemark}}
+  </div>
+  <div class="column">
+    {{> location-image }}
+  </div>
+</section>
+
+{{> list-reviews}}

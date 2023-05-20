@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="columns is-multiline">
+        {{#each location.placemarks}}
+        <div class="column is-one-quarter">
+        <div class="card">
+            <header class="card-header" style="display: flex; justify-content: center; align-items: center;">
+                <p class="card-header-title">
+                    Name: {{name}}
+                </p>
+            </header>
+
+
+            <div class="card-content">
+                <div class="content">
+                    Description: {{description}}
+                </div>
+                <div class="content">
+                    Latitude: {{latitude}}
+                </div>
+                <div class="content">
+                    Longitude: {{longitude}}
+                </div>
+                <div class="content">
+                    Category: {{category}}
+                </div>
+            </div>
+        <footer class="card-footer">
+          <a href="/placemark/{{../location._id}}/editplacemark/{{_id}}" class="card-footer-item">
+            <i class="fas fa-edit"></i>
+          </a>
+          <a href="/location/{{../location._id}}/deleteplacemark/{{_id}}" class="card-footer-item">
+            <i class="fas fa-trash"></i>
+          </a>
+        </footer>
+        </div>
+        </div>
+
+        {{/each}}
+    </div>
+</div>
+
+<section>
+    {{>map}}
+</section>

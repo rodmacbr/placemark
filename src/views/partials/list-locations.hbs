@@ -1,0 +1,18 @@
+{{#each locations}}
+  <div class="box box-link-hover-shadow">
+    <h2 class="title">
+      {{name}}
+    </h2>
+    <a href="/location/{{_id}}" class="button">
+      <span class="icon is-small">
+        <i class="fas fa-folder-open"></i>
+      </span>
+    </a>
+    <a href="/dashboard/editpoi/{{_id}}" class="button">
+        <i class="fas fa-edit"></i>
+    </a>
+    <a href="/dashboard/deletelocation/{{_id}}" class="button">
+      <i class="fas fa-trash"></i>
+    </a>
+  </div>
+{{/each}}

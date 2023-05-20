@@ -1,0 +1,16 @@
+{
+  "locations": [
+    {
+      "name": "Dublin",
+      "_id": "d0354804-ab37-43a3-ad33-76338bbb6015"
+    },
+    {
+      "name": "Cork",
+      "_id": "aded6fa6-f7d8-4de4-99ae-2f1ec6eedbee"
+    },
+    {
+      "name": "Galway",
+      "_id": "3de0d412-2b5a-4470-9f01-9a73b263175e"
+    }
+  ]
+}

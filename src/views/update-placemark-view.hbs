@@ -1,0 +1,44 @@
+{{>menu}}
+
+
+<form class="box" action="/location/{{placemark.locationid}}/placemark/{{placemark._id}}" method="POST">
+  <label>Enter Updated Details</label>
+  <div class="field is-horizontal">
+    <div class="field-body">
+
+      <div class="field">
+        <input class="input" type="text" placeholder="{{placemark.name}}" name="name">
+      </div>
+
+      <div class="field">
+        <input class="input" type="text" placeholder="{{placemark.description}}" name="description">
+      </div>
+
+      <div class="field">
+        <input class="input" step="0.0000001" maxlength="10" min="-90.0000000" max="90.0000000" type="number"
+               placeholder="{{placemark.latitude}}" name="latitude" />
+      </div>
+
+      <div class="field">
+        <input class="input" step="0.0000001" maxlength="10" min="-180.0000000" max="180.0000000" type="number"
+               placeholder="{{placemark.longitude}}" name="longitude" />
+      </div>
+      <div class="field">
+        <div class="select">
+          <select name="category">
+            <option value="Category"> Category</option>
+            <option value="Tourist attractions"> Tourist-attractions</option>
+            <option value="Parks"> Parks</option>
+            <option value="Pubs"> Pubs</option>
+            <option value="Shops"> Shops</option>
+            <option value="Beaches"> Beaches</option>
+            <option value="Car parks"> Car parks</option>
+            <option value="Schools"> Schools</option>
+            <option value="Others"> Others</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button class="button is-primary">Update Placemark</button>
+  </div>
+</form>
