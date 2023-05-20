@@ -45,8 +45,8 @@ export const locationMongoStore = {
 
   async updateLocation(updatedLocation) {
     const location = await Location.findOne({ _id: updatedLocation._id });
-    location.title = updatedLocation.title;
-    location.img = updatedLocation.img;
+    location.name = updatedLocation.name;
+    // location.img = updatedLocation.img;
     await location.save();
   },
 };

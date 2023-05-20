@@ -2,6 +2,7 @@ import Inert from "@hapi/inert";
 import Vision from "@hapi/vision";
 import Hapi from "@hapi/hapi";
 import Cookie from "@hapi/cookie";
+import Bell from "@hapi/bell";
 import dotenv from "dotenv";
 import path from "path";
 import Joi from "joi";
@@ -14,9 +15,18 @@ import { db } from "./models/db.js";
 import { accountsController } from "./controllers/accounts-controller.js";
 import { validate } from "./api/jwt-utils.js";
 import { apiRoutes } from "./api-routes.js";
+import helpers from "./views/helpers/helpers.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const bellAuthOptions = {
+  provider: "github",
+  password: "github-encryption-password-secure", // String used to encrypt cookie
+  clientId: "9b3db96aaabe6df516ba", //GitHub Client ID
+  clientSecret: "6b8fef78220e813fd45306f25eaf8c89634a3002", // Github Client Secret
+  isSecure: false, // (requires HTTPS)
+};
 
 const result = dotenv.config();
 if (result.error) {
@@ -48,6 +58,7 @@ async function init() {
   await server.register(Vision);
   await server.register(Cookie);
   await server.register(jwt);
+  await server.register(Bell);
 
   await server.register([
     Inert,
@@ -68,6 +79,7 @@ async function init() {
     path: "./views",
     layoutPath: "./views/layouts",
     partialsPath: "./views/partials",
+    helpersPath: "./views/helpers",
     layout: true,
     isCached: false,
   });
@@ -86,11 +98,13 @@ async function init() {
     validate: validate,
     verifyOptions: { algorithms: ["HS256"] },
   });
+  server.auth.strategy("github-oauth", "bell", bellAuthOptions);
   server.auth.default("session");
 
   db.init("mongo");
   server.route(webRoutes);
   server.route(apiRoutes);
+  helpers(Handlebars);
   await server.start();
   console.log("Server running on %s", server.info.uri);
 }

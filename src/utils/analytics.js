@@ -6,7 +6,7 @@ export async function analytics() {
   const placemarks = await db.placemarkStore.getAllPlacemarks();
   return {
     userCount: users.length,
-    poiCount: locations.length,
-    placeCount: placemarks.length,
+    locationCount: locations.length,
+    placemarkCount: placemarks.length,
   };
 }

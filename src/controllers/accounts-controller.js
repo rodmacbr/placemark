@@ -98,4 +98,24 @@ export const accountsController = {
     }
     return { isValid: true, credentials: user };
   },
+
+  loginOauth: {
+    // OAuth Login function to creates a new user
+    auth: "github-oauth",
+    handler: async function (request, h) {
+      if (request.auth.isAuthenticated) {
+        console.log(request.auth.credentials);
+        const Name = request.auth.credentials.profile.displayName.split(" ");
+        const newUser = {
+          firstName: Name[0],
+          lastName: Name[1],
+          email: request.auth.credentials.profile.email,
+        };
+        const user = await db.userStore.addUser(newUser);
+        request.cookieAuth.set({ id: user._id });
+        return h.redirect("/dashboard");
+      }
+      return h.redirect("/");
+    },
+  },
 };

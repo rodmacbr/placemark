@@ -6,6 +6,7 @@ export const seedData = {
       lastName: "Simpson",
       email: "homer@simpson.com",
       password: "$2a$10$HnapEWWKQQ0.0Ft33nXxtuJ0fsmd9ywYswEzT4C.6Ul5y6cOU.UEa",
+      scope: ["admin", "user"],
     },
     marge: {
       firstName: "Marge",
@@ -28,7 +29,7 @@ export const seedData = {
     },
     Galway: {
       name: "Galway",
-      userid: "->users.homer",
+      userid: "->users.marge",
     },
     Cork: {
       name: "Cork",
@@ -36,7 +37,7 @@ export const seedData = {
     },
     Waterford: {
       name: "Waterford",
-      userid: "->users.homer",
+      userid: "->users.bart",
     },
   },
   placemarks: {

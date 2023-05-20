@@ -4,8 +4,14 @@ export const IdSpec = Joi.alternatives().try(Joi.string(), Joi.object()).descrip
 
 export const UserCredentialsSpec = Joi.object()
   .keys({
-    email: Joi.string().email().example("homer@simpson.com").required(),
-    password: Joi.string().example("secret").required(),
+    email: Joi.string()
+      .email({
+        minDomainSegments: 2, // require at least 2 domain segments
+        tlds: { allow: ["com", "net"] }, // allow only .com and .net TLDs
+      })
+      .example("homer@simpson.com")
+      .required(),
+    password: Joi.string().example("secret").min(6).message("Password must be at least 6 characters long").required(),
   })
   .label("UserCredentials");
 

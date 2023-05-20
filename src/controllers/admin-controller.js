@@ -9,7 +9,6 @@ export const adminController = {
     handler: async function (request, h) {
       const loggedInUser = request.auth.credentials;
       const users = await db.userStore.getAllUsers();
-
       const analyticsResults = await analytics();
       const viewData = {
         title: "Point-of-Interest Admin Dashboard",

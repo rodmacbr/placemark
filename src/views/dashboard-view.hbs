@@ -1,4 +1,8 @@
-{{> menu active="dashboard"}}
+{{#if (isAdmin user) }}
+    {{> admin-menu active="dashboard"}}
+{{else}}
+    {{> menu active="dashboard"}}
+{{/if}}
 
 <section class="section">
   {{> add-location}}
